@@ -6,6 +6,9 @@ class { 'jenkins':
   install_java => false,
 }
 
+package { 'unzip': }
+include gradle
+
 jenkins::plugin {
     "git" : ;
 }
