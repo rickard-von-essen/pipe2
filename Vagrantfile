@@ -5,10 +5,10 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "box-cutter/centos65"
+  config.vm.box = "CentOS-6.5-x86_64-puppet"
 
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
-  config.vm.network "public_network"
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+  # config.vm.network "public_network"
 
   config.vm.provider :vmware_fusion do |vmware|
     vmware.customize["memsize"] = $memsize
@@ -23,7 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :puppet do |puppet|
     puppet.manifest_file  = "default.pp"
     puppet.module_path = ["external_modules", "modules"]
-    puppet.hiera_config_path = "hiera.yaml"
+    #puppet.hiera_config_path = "hiera.yaml"
     puppet.options = "--parser=future --verbose " + ENV['PUPPET_ARGS'].to_s
   end
 
