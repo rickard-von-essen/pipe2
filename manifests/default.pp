@@ -1,5 +1,10 @@
-include jenkins
+class { 'java':
+  package => 'java-1.7.0-openjdk-devel.x86_64',
+}
 
+class { 'jenkins':
+  install_java => false,
+}
 
 jenkins::plugin {
     "git" : ;
