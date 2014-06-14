@@ -16,6 +16,10 @@ package { 'git': }
 package { 'unzip': }
 include gradle
 
+class { "maven::maven":
+  version => "3.2.1",
+}
+
 jenkins::plugin {
     "git" : ;
 }
