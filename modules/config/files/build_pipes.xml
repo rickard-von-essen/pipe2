@@ -33,12 +33,19 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.23">
-      <targets>jobs/commit_stage.groovy</targets>
+      <targets>jobs/pipeline.groovy</targets>
       <usingScriptText>false</usingScriptText>
       <ignoreExisting>false</ignoreExisting>
       <removedJobAction>IGNORE</removedJobAction>
     </javaposse.jobdsl.plugin.ExecuteDslScripts>
   </builders>
   <publishers/>
-  <buildWrappers/>
+  <buildWrappers>
+    <EnvInjectBuildWrapper plugin="envinject@1.89">
+      <info>
+        <propertiesFilePath>jobs/testclinic.properties</propertiesFilePath>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
+  </buildWrappers>
 </project>

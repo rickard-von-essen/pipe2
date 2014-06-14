@@ -13,8 +13,8 @@ file { '/var/lib/jenkins/jobs/build_pipes/config.xml':
 }
 
 package { 'git': }
-package { 'unzip': }
 include gradle
+include groovy
 
 class { "maven::maven":
   version => "3.2.1",
@@ -57,4 +57,8 @@ jenkins::plugin {
 
 jenkins::plugin {
     "envinject" : ;
+}
+
+jenkins::plugin {
+    "groovy" : ;
 }
