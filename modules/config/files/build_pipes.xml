@@ -48,7 +48,7 @@
 
 def template = (new File(&apos;jobs/pipeline.groovy.template&apos;)).text
 
-def binding = new ConfigSlurper().parse(new File(&quot;jobs/${pipe_name}.groovy&quot;).toURL())
+def binding = new ConfigSlurper().parse(new File(&quot;jobs/${System.getenv(&apos;pipe_name&apos;)}.groovy&quot;).toURL())
 
 def engine = new SimpleTemplateEngine()
 job = engine.createTemplate(template).make(binding)
@@ -58,7 +58,7 @@ job = engine.createTemplate(template).make(binding)
       <groovyName>groovy-2.3.1</groovyName>
       <parameters></parameters>
       <scriptParameters></scriptParameters>
-      <properties></properties>
+      <properties>pipe_name=${pipe_name}</properties>
       <javaOpts></javaOpts>
       <classPath></classPath>
     </hudson.plugins.groovy.Groovy>

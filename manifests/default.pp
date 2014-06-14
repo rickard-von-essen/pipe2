@@ -11,6 +11,12 @@ file { '/var/lib/jenkins/jobs/build_pipes/config.xml':
   group  => 'jenkins',
   notify => Service['jenkins'],
 }
+file { '/var/lib/jenkins/config.xml':
+  source => 'puppet:///modules/config/jenkins.xml',
+  owner  => 'jenkins',
+  group  => 'jenkins',
+  notify => Service['jenkins'],
+}
 
 package { 'git': }
 include gradle
