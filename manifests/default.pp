@@ -44,7 +44,9 @@ jenkins::plugin {
 jenkins::plugin {
     "job-dsl" : ;
 }
-
+jenkins::plugin {
+    "build-flow-plugin" : ;
+}
 jenkins::plugin {
     "delivery-pipeline-plugin" : ;
 }
