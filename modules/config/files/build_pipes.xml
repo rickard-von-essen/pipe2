@@ -3,7 +3,17 @@
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>pipe_name</name>
+          <description></description>
+          <defaultValue>testclinic</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.1">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
@@ -32,6 +42,26 @@
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
+    <hudson.plugins.groovy.Groovy plugin="groovy@1.18">
+      <scriptSource class="hudson.plugins.groovy.StringScriptSource">
+        <command>import groovy.text.SimpleTemplateEngine
+
+def template = (new File(&apos;jobs/pipeline.groovy.template&apos;)).text
+
+def binding = new ConfigSlurper().parse(new File(&quot;jobs/${pipe_name}.groovy&quot;).toURL())
+
+def engine = new SimpleTemplateEngine()
+job = engine.createTemplate(template).make(binding)
+
+(new File(&apos;jobs/pipeline.groovy&apos;)).text=job.toString()</command>
+      </scriptSource>
+      <groovyName>groovy-2.3.1</groovyName>
+      <parameters></parameters>
+      <scriptParameters></scriptParameters>
+      <properties></properties>
+      <javaOpts></javaOpts>
+      <classPath></classPath>
+    </hudson.plugins.groovy.Groovy>
     <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.23">
       <targets>jobs/pipeline.groovy</targets>
       <usingScriptText>false</usingScriptText>
@@ -40,12 +70,5 @@
     </javaposse.jobdsl.plugin.ExecuteDslScripts>
   </builders>
   <publishers/>
-  <buildWrappers>
-    <EnvInjectBuildWrapper plugin="envinject@1.89">
-      <info>
-        <propertiesFilePath>jobs/testclinic.properties</propertiesFilePath>
-        <loadFilesFromMaster>false</loadFilesFromMaster>
-      </info>
-    </EnvInjectBuildWrapper>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
