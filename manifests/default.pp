@@ -54,3 +54,7 @@ jenkins::plugin {
 jenkins::plugin {
     "build-pipeline-plugin" : ;
 }
+
+jenkins::plugin {
+    "envinject" : ;
+}
