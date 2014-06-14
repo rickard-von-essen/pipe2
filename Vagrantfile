@@ -7,7 +7,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "CentOS-6.5-x86_64-puppet"
 
-  config.vm.network "forwarded_port", guest: 8080, host: 8080
+  config.vm.network "forwarded_port", guest: 8080, host: 8090
   # config.vm.network "public_network"
 
   config.vm.provider :vmware_fusion do |vmware|
@@ -16,8 +16,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provider :virtualbox do |virtualbox|
-    virtualbox.customize ["modifyvm", :id, "--memory", $memsize]
-    virtualbox.customize ["modifyvm", :id, "--cpus", $ncpus]
+    virtualbox.customize ["modifyvm", :id, "--memory", 1024]
+    virtualbox.customize ["modifyvm", :id, "--cpus", 2]
   end
 
   config.vm.provision :puppet do |puppet|
