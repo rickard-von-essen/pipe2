@@ -47,6 +47,53 @@
       <refreshFrequency>3</refreshFrequency>
       <showPipelineDefinitionHeader>true</showPipelineDefinitionHeader>
     </au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView>
+    <au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView plugin="build-pipeline-plugin@1.4.3">
+      <owner class="hudson" reference="../../.."/>
+      <name>petclinic</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <gridBuilder class="au.com.centrumsystems.hudson.plugin.buildpipeline.DownstreamProjectGridBuilder">
+        <firstJob>build-petclinic</firstJob>
+      </gridBuilder>
+      <noOfDisplayedBuilds>5</noOfDisplayedBuilds>
+      <buildViewTitle></buildViewTitle>
+      <consoleOutputLinkStyle>Lightbox</consoleOutputLinkStyle>
+      <cssUrl></cssUrl>
+      <triggerOnlyLatestJob>false</triggerOnlyLatestJob>
+      <alwaysAllowManualTrigger>false</alwaysAllowManualTrigger>
+      <showPipelineParameters>true</showPipelineParameters>
+      <showPipelineParametersInHeaders>true</showPipelineParametersInHeaders>
+      <startsWithParameters>false</startsWithParameters>
+      <refreshFrequency>3</refreshFrequency>
+      <showPipelineDefinitionHeader>true</showPipelineDefinitionHeader>
+    </au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView>
+    <se.diabol.jenkins.pipeline.DeliveryPipelineView plugin="delivery-pipeline-plugin@0.8.0">
+      <owner class="hudson" reference="../../.."/>
+      <name>Pipes</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <componentSpecs>
+        <se.diabol.jenkins.pipeline.DeliveryPipelineView_-ComponentSpec>
+          <name>Test-Pipe</name>
+          <firstJob>build-testclinic</firstJob>
+        </se.diabol.jenkins.pipeline.DeliveryPipelineView_-ComponentSpec>
+        <se.diabol.jenkins.pipeline.DeliveryPipelineView_-ComponentSpec>
+          <name>Prod-Pipes</name>
+          <firstJob>build-petclinic</firstJob>
+        </se.diabol.jenkins.pipeline.DeliveryPipelineView_-ComponentSpec>
+      </componentSpecs>
+      <noOfPipelines>5</noOfPipelines>
+      <showAggregatedPipeline>false</showAggregatedPipeline>
+      <noOfColumns>2</noOfColumns>
+      <sorting>none</sorting>
+      <showAvatars>true</showAvatars>
+      <updateInterval>2</updateInterval>
+      <showChanges>true</showChanges>
+      <allowManualTriggers>true</allowManualTriggers>
+      <regexpFirstJobs/>
+    </se.diabol.jenkins.pipeline.DeliveryPipelineView>
   </views>
   <primaryView>All</primaryView>
   <slaveAgentPort>0</slaveAgentPort>

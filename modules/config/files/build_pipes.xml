@@ -46,7 +46,7 @@
       <scriptSource class="hudson.plugins.groovy.StringScriptSource">
         <command>import groovy.text.SimpleTemplateEngine
 
-def template = (new File(&apos;jobs/pipeline.groovy.template&apos;)).text
+def template = (new File(&apos;jobs/pipeline.template.groovy&apos;)).text
 
 def binding = new ConfigSlurper().parse(new File(&quot;jobs/${System.getenv(&apos;pipe_name&apos;)}.groovy&quot;).toURL())
 
